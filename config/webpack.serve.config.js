@@ -17,10 +17,12 @@ const { getPort, findFreePort } = require('./utils/PortHandler')
 			static: './dist',
 			historyApiFallback: true,
 			devMiddleware: { index: false },
-			proxy: {
-				context: (url, req) => !/.js.map|favicon.ico/g.test(url),
-				target: `http://localhost:${puppeteerSSRPort}`,
-			},
+			proxy: [
+				{
+					context: (url, req) => !/.js.map|favicon.ico/g.test(url),
+					target: `http://localhost:${puppeteerSSRPort}`,
+				},
+			],
 		}
 	)
 

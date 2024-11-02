@@ -81,10 +81,12 @@ const WebpackDevelopmentConfiguration = async () => {
 				writeToDisk: true,
 				index: false,
 			},
-			proxy: {
-				context: (url, req) => !/.js.map|favicon.ico/g.test(url),
-				target: `http://localhost:${PUPPETEER_SSR_PORT}`,
-			},
+			proxy: [
+				{
+					context: (url, req) => !/.js.map|favicon.ico/g.test(url),
+					target: `http://localhost:${PUPPETEER_SSR_PORT}`,
+				},
+			],
 			// onBeforeSetupMiddleware: function (devServer) {
 			// 	if (!devServer) {
 			// 		throw new Error('webpack-dev-server is not defined')
